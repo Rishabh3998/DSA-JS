@@ -134,8 +134,11 @@ function validPalindrome(num) {
 // const result = validPalindrome(123);
 // console.log(result);
 
-// Leetcode -  Top interview 150
+// Leetcode
 // Question 5: Fibonacci number
+// https://leetcode.com/problems/fibonacci-number/description/
+
+// Logic:
 // F(0) = 0, F(1) = 1
 // F(n) = F(n - 1) + F(n - 2), for n > 1.
 // 0 1 1 2 3 5 8 13 => Fibonacci series
@@ -165,3 +168,7 @@ function fibonacciNumber(n) {
 
 const result = fibonacciNumber(3);
 console.log(result);
+
+// Leetcode
+// Question 6: Missing number
+// https://leetcode.com/problems/missing-number/description/
