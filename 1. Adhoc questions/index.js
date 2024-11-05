@@ -166,9 +166,73 @@ function fibonacciNumber(n) {
   return next;
 }
 
-const result = fibonacciNumber(3);
-console.log(result);
+// const result = fibonacciNumber(3);
+// console.log(result);
 
 // Leetcode
 // Question 6: Missing number
 // https://leetcode.com/problems/missing-number/description/
+
+// Approach 1: (Brute force)
+// Input: nums = [3,0,1]
+// 1. I have nums array so i can find the nums.length which is my n [0, nums.length] => range
+// 2. Now i know the range in which the numbers will lie.
+// 3. I can run a for loop from 0 to nums.length and inside this for loop in can run another
+//    for loop which will check if the current i of the parent loop is present inside the array
+//    or not.
+// Output: 2
+// Time complexity: O(n) [n is nums.length] * O(n) [To traverse the array] = O(n^2)
+
+// Approach 2:
+// Input: nums = [3,0,1]
+// 1. Sort the array
+//    [0,1,3]
+// 2. Run through the array and check if index === nums[i]
+//    [{0,0}, {1,1}, {2,3}] => {index, value}
+// 3. If not then the index will be the answer because that particular index is not present there.
+// Output: 2
+// Time complexity: O(n * logN) [sorting] + O(n) [traversing the array] = O(n * logN)
+
+// Approach 3:
+// Input: nums = [3,0,1]
+// 1. Create an array (arr) of size max + 1 present in nums array initialize it with 0
+// 2. Traverse through nums and and if arr[nums[i]]++
+// 3. Traverse through the arr array and return the index which contains 0
+// Time complexity: O(n) + O(n) + O(n) = O(n)
+// Space complexity: O(n) [new array]
+
+// Approach 4:
+// As we know the range is [0,n] and all number should be present so we can calculate the sum of all
+// numbers present inside the nums array and using formula let's calculate the sum of natural numbers
+// from 0 to n.
+// In the end we can return the difference between both calculated sum.
+
+function missingNumber(nums) {
+  // Approach 3:
+  // let max = -Infinity;
+  // let missing;
+  // nums.forEach((num) => {
+  //   if (num > max) {
+  //     max = num;
+  //   }
+  // });
+  // let arr = Array(max + 1).fill(0);
+  // nums.forEach((num) => {
+  //   arr[num]++;
+  // });
+  // arr.forEach((num, index) => {
+  //   if (num === 0) {
+  //     missing = index;
+  //   }
+  // });
+  // return missing;
+
+  // Approach 4:
+  let n = nums.length;
+  let sumOfNaturalNumber = (n * (n + 1)) / 2;
+  const sumOfNums = nums.reduce((acc, curr) => acc + curr, 0);
+  return sumOfNaturalNumber - sumOfNums;
+}
+
+const result = missingNumber([3, 0, 1]);
+console.log(result);
