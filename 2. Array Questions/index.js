@@ -61,8 +61,158 @@ function findElement(arr, target) {
       return index;
     }
   }
+  return -1;
 }
 
-const foundElement = findElement([1, 2, 3, 4], 2); // give index of found element
+const foundElement = findElement([1, 2, 3, 4], 3); // give index of found element
 
 console.log(foundElement);
+
+// Using includes to check is present or not
+console.log(arr3);
+console.log(arr3.includes("Hello"));
+console.log(arr3.indexOf("Hello"));
+
+// How to delete, add & update element from specific index
+// array.splice(startingIndex, deleteCount, ...items);
+
+console.log(arr3);
+
+// Deleting entities using splice
+const deletedEntitiesFromArray = arr3.splice(1, 3); // Modify the original array => Deleted 3 elements from 1st index
+console.log(arr3);
+console.log(deletedEntitiesFromArray);
+
+// Adding entities using splice
+// array.splice(startingIndex, deleteCount, ...newEntitiesToAdd);
+const deletedEntitiesFromArray2 = arr3.splice(1, 0, 9, 8, 7, 6);
+console.log(arr3);
+console.log(deletedEntitiesFromArray2); // Nothing is deleted because deleteCount = 0
+
+// Updating entities using splice
+const deletedEntitiesFromArray3 = arr3.splice(1, 3, "x", "y", "z");
+console.log(arr3);
+console.log(deletedEntitiesFromArray3); // Deleted 3 numbers after startingIndex and added 3 other numbers.
+
+// splice vs slice:
+
+// splice is used to add, delete and update values from specific index.
+
+// slice helps use to give the subArray or a part of array present between specified indexes
+// Syntax: array.slice(startingIndex, endingIndex); range: [start, end)
+const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const subArray = array.slice(2, 6); // returns an altogether new subarray and original is intact;
+console.log(subArray);
+console.log(array);
+
+// Shallow copy & Deep copy
+
+// Shallow
+const arrayB = array;
+arrayB.push("Rishabh");
+console.log(array);
+console.log(arrayB);
+
+// Deep
+const arrayForDeep = [1, 2, 3, 4];
+
+const deep = [...arrayForDeep];
+const deep2 = Array.from(arrayForDeep);
+const deep3 = arrayForDeep.concat();
+
+deep.push("Rishabh");
+deep2.push("Ritik");
+deep3.push("Vansh");
+
+console.log(arrayForDeep);
+
+console.log(deep);
+console.log(deep2);
+console.log(deep3);
+
+// Question 2: How to add 2 arrays in JS?
+const firstArray = [1, 2, 3, 4];
+const secondArray = [5, 6, 7, 8];
+
+const merged = [...firstArray, ...secondArray];
+const merged2 = firstArray.concat(secondArray);
+
+console.log(firstArray);
+console.log(secondArray);
+
+console.log(merged);
+console.log(merged2);
+
+// Question 3: How to check if 2 arrays are equal or not
+const isArrayEqual = (arr1, arr2) => {
+  if (arr1.length !== arr2.length) {
+    return false;
+  }
+  for (let i = 0; i < arr1.length; i++) {
+    if (arr1[i] !== arr2[i]) {
+      return false;
+    }
+  }
+  return true;
+};
+
+const isArrayEqual2 = (arr1, arr2) => {
+  // arr.every((currentEle, index) => condition);
+  // This every will check if the given condition is applying on all the elements or not.
+  // return a boolean.
+
+  // A method opposite to this one is
+  // array.some((currentEle, index) => condition);
+  // This every will check if the given condition is applying on any one of the element or not.
+  // return a boolean.
+
+  return (
+    arr1.length === arr2.length && arr1.every((ele, i) => arr1[i] === arr2[i])
+  );
+};
+
+console.log(isArrayEqual([1, 2, 3, 4], [1, 2, 3, 4]));
+console.log(isArrayEqual([1, 2, 3, 4], [1, 2]));
+console.log(isArrayEqual2([1, 2, 3, 4], [1, 2, 3, 4]));
+console.log(isArrayEqual2([1, 2, 3, 4], [1, 2]));
+
+// Question 4: How to sort an array in ascending or descending order?
+const beforeSorting = [1, 4, 6, 0, -9, -5];
+const afterSorting = beforeSorting.sort(); // modify the original array.
+
+const copy = [...beforeSorting];
+const afterSortingCopy = copy.sort(); // modify the original array. (n * logN)
+
+console.log(beforeSorting);
+console.log(afterSorting);
+console.log(afterSortingCopy);
+
+const beforeSortingNew = [1, 2, 3, 4, 5];
+const descending = [...beforeSortingNew];
+
+descending.sort((first, second) => {
+  // If returned number is +ve swap will happen
+  // If -ve no swap;
+
+  // second is greater then first so the number will be +ve therefore they will swap.
+  return second - first;
+});
+
+console.log(descending);
+
+// Reverse the array
+const beforeReverse = [1, 2, 5, 6, 3, 9];
+const reversed = beforeReverse.reverse(); // modify the original array;
+
+console.log(beforeReverse);
+console.log(reversed);
+
+// Flat
+// Suppose we have a nested array and we want to make it flat
+
+const nested = [1, 2, [3, 4], [5, 6, [7, 8]]];
+// Syntax: array.flat(depth); => depth is like to which extent you need your array to be flattened.
+const flattened = nested.flat(); // original is intact
+
+console.log(nested);
+console.log(flattened);
