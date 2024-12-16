@@ -229,3 +229,50 @@ function l2(strs) {
 }
 
 console.log(longestCommonPrefix(strs));
+
+// Question 5:
+// Merge Strings Alternately
+// https://leetcode.com/problems/merge-strings-alternately/description/
+
+const word1 = "ab",
+  word2 = "pqrs";
+
+// Output: "apbqrs"
+
+const mergeAlternately = function (word1, word2) {
+  let i = 0;
+  let j = 0;
+  let result = "";
+
+  if (word1.length === 0 && word2.length !== 0) {
+    result += word2;
+  } else if (word2.length === 0 && word1.length !== 0) {
+    result += word1;
+  } else if (word1.length === 0 && word2.length === 0) {
+    return result;
+  } else {
+    while (i < word1.length && j < word2.length) {
+      result += word1[i];
+      result += word2[j];
+      i++;
+      j++;
+    }
+    if (i === word1.length) {
+      // append rest of string present in word2
+      while (j < word2.length) {
+        result += word2[j];
+        j++;
+      }
+    } else if (j === word2.length) {
+      // append rest of string present in word1
+      while (i < word1.length) {
+        result += word1[i];
+        i++;
+      }
+    }
+  }
+
+  return result;
+};
+
+console.log(mergeAlternately(word1, word2));
