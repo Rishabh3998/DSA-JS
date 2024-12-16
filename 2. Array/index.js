@@ -216,3 +216,29 @@ const flattened = nested.flat(); // original is intact
 
 console.log(nested);
 console.log(flattened);
+
+// Flattening an array
+const arrLeetcode = [1, 2, 3, [4, 5, 6], [7, 8, [9, 10, 11], 12], [13, 14, 15]];
+
+const flat = function (arr, n) {
+  if (n === 0) return arr;
+  let givenArray = arr;
+  let array = [];
+  let depth = n;
+  while (depth !== 0) {
+    givenArray.forEach((ele, index) => {
+      if (Array.isArray(ele)) {
+        array.push(...ele);
+      } else {
+        array.push(ele);
+      }
+    });
+    givenArray = array;
+    array = [];
+    depth--;
+  }
+  return givenArray;
+};
+
+const res = flat(arrLeetcode, 2);
+console.log(res);
