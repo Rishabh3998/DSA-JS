@@ -276,3 +276,24 @@ const mergeAlternately = function (word1, word2) {
 };
 
 console.log(mergeAlternately(word1, word2));
+
+// Question 6:
+// Length of last word
+// https://leetcode.com/problems/length-of-last-word/description/
+
+const withoutTrim = "moon";
+
+const lengthOfLastWord = function (s) {
+  const removeTrailingAndLeadingSpaces = s.trim();
+  let i = removeTrailingAndLeadingSpaces.length - 1;
+  let len = 0;
+
+  while (removeTrailingAndLeadingSpaces[i] !== " " && i >= 0) {
+    len++;
+    i--;
+  }
+
+  return len;
+};
+
+console.log(lengthOfLastWord(withoutTrim));
